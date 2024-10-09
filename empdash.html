@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="empdash.css"> <!-- Link to the CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for graphs -->
+</head>
+<body>
+    <div class="employee-dashboard">
+        <!-- Manager and Team Leader Info -->
+        <div class="manager-info">
+            <h2>Manager and Team Leader</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Name</th>
+                        <th>Employee ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Manager</td>
+                        <td>gurman</td>
+                        <td>MG111</td>
+                    </tr>
+                    <tr>
+                        <td>Team Leader</td>
+                        <td>sahiba</td>
+                        <td>TL101</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Team Attendance with Google Calendar -->
+        <div class="calendar">
+            <h2>Team Attendance</h2>
+            <!-- Reduced the width and height of the iframe -->
+            <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=YOUR_TIME_ZONE" style="border: 0; width: 400px; height: 300px;" frameborder="0" scrolling="no"></iframe>
+        </div>
+
+        <!-- Charts for Task Statistics -->
+        <div class="charts">
+            <h2>Task Statistics</h2>
+            <div class="chart-container">
+                <!-- Bar Chart -->
+                <canvas id="barChart"></canvas>
+                <!-- Pie Chart -->
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Bar Chart for Task Statistics
+        var ctxBar = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['Assigned', 'Ongoing', 'Completed'], // Update with your labels
+                datasets: [{
+                    label: 'Tasks',
+                    data: [5, 8, 6], // Update with your data
+                    backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(75, 192, 192, 0.2)'],
+                    borderColor: ['rgba(255, 159, 64, 1)', 'rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Pie Chart for Task Distribution
+        var ctxPie = document.getElementById('pieChart').getContext('2d');
+        var pieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: ['Assigned', 'Ongoing', 'Completed'], // Update with your labels
+                datasets: [{
+                    data: [5, 8, 6], // Update with your data
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 205, 86, 1)', 'rgba(54, 162, 235, 1)'],
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

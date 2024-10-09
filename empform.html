@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Login</title>
+    <link rel="stylesheet" href="empform.css"> <!-- Link to the CSS file -->
+    <script>
+        function redirectToEmployeeDashboard(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get the values of the username and password inputs
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Example of using the username and password values (you can modify as needed)
+            console.log('Username:', username);
+            console.log('Password:', password);
+
+            // You can add form validation or authentication logic here
+            if (username === 'employee' && password === 'employee123') {
+                // Redirect to the employee dashboard if validation passes
+                window.location.href = 'empdash.html'; 
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Employee Login</h2>
+        <form onsubmit="redirectToEmployeeDashboard(event)"> <!-- Attach the JavaScript function to the form -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

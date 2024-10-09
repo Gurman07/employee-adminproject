@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admindash.css"> <!-- Link to the CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for graphs -->
+</head>
+<body>
+    <div class="admin-dashboard">
+
+        <div class="admin-info">
+            <h2>Admin Info</h2>
+            <form action="/admin-update" method="post"> <!-- Update action to your backend endpoint -->
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="empid">Employee ID:</label>
+                <input type="text" id="empid" name="empid" required>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+
+     
+        <div class="team-table">
+            <h2>Team Information</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team Number</th>
+                        <th>Team Leader</th>
+                        <th>Team Members</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    
+                    <tr>
+                        <td>1</td>
+                        <td>gurman</td>
+                        <td>anvi,gursimrat</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>sahiba</td>
+                        <td>gurleen,priyanka</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Google Calendar Integration -->
+        <div class="calendar">
+            <h2>Team Calendar</h2>
+            <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=YOUR_TIME_ZONE" style="border: 0;" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts">
+            <h2>Task Statistics</h2>
+            <div class="chart-container">
+                <!-- Bar Chart -->
+                <canvas id="barChart"></canvas>
+                <!-- Pie Chart -->
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Task Assignment -->
+        <div class="task-assignment">
+            <h2>Assign Tasks</h2>
+            <form action="/assign-task" method="post"> <!-- Update action to your backend endpoint -->
+                <label for="task">Task:</label>
+                <input type="text" id="task" name="task" required>
+                <label for="employee">Assign to Employee:</label>
+                <input type="text" id="employee" name="employee" required>
+                <button type="submit">Assign Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Bar Chart
+        var ctxBar = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['Task 1', 'Task 2'], // Update with your labels
+                datasets: [{
+                    label: 'Tasks Completed',
+                    data: [8, 15], // Update with your data
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Pie Chart
+        var ctxPie = document.getElementById('pieChart').getContext('2d');
+        var pieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: ['Task A', 'Task B', ], // Update with your labels
+                datasets: [{
+                    data: [8, 15], // Update with your data
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
